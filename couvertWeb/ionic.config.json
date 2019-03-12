@@ -1,0 +1,13 @@
+{
+  "name": "couvert",
+  "integrations": {
+    "cordova": {}
+  },
+  "proxies": [
+    {
+      "path": "/login",
+      "proxyUrl": "http://167.99.185.11:9005"
+    }
+  ],
+  "type": "ionic-angular"
+}
