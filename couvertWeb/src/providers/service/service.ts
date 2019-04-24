@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {ApiProvider} from '../api/api'
 import { text } from '@angular/core/src/render3/instructions';
-import {CouvertInfoModel} from '../../models/models'
+import {CouvertInfoModel,BasicInfoModel,StreamflowInfoModel,DebrisjamsInfoModel} from '../../models/models'
 
 /*
   Generated class for the ServiceProvider provider.
@@ -12,7 +12,7 @@ import {CouvertInfoModel} from '../../models/models'
 */
 @Injectable()
 export class ServiceProvider {
-  url="http://localhost:8380/v1/"
+  url="http://localhost:8580/v1/"
   /*urlAndroid="http://10.0.2.2:9000/"*/
   urlAndroid="http://167.99.185.11:9005/"
   constructor(public http: HttpClient,public api:ApiProvider) {
@@ -51,6 +51,18 @@ export class ServiceProvider {
     let seq=this.http.get(this.url+'culvert_image',{responseType:'json'})
     return seq
   }
+  getAllBasic(){
+    let seq=this.http.get(this.url+'basic_image',{responseType:'json'})
+    return seq
+  }
+  getAllStreamflow(){
+    let seq=this.http.get(this.url+'streamflow',{responseType:'json'})
+    return seq
+  }
+  getAllDebrisjams(){
+    let seq=this.http.get(this.url+'debris_jams',{responseType:'json'})
+    return seq
+  }
   uploadCouvert(culvert:CouvertInfoModel){
     const params = JSON.stringify({
       Uploader: culvert.Uploader,
@@ -65,6 +77,48 @@ export class ServiceProvider {
     })
     console.log(params.toString())
    let seq=this.http.post(this.url+'culvert_image',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'},responseType:'text'})
+   return seq;
+  }
+  uploadBasic(basic:BasicInfoModel){
+    const params = JSON.stringify({
+      Uploader: basic.Uploader,
+      Lat: basic.Lat,
+      Lon: basic.Lon,
+      Pic: basic.Pic,
+      Description: basic.Description,
+      Orientation: basic.Orientation
+    })
+    console.log(params.toString())
+   let seq=this.http.post(this.url+'basic_image',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'},responseType:'text'})
+   return seq;
+  }
+  uploadStreamflow(sf:StreamflowInfoModel){
+    const params = JSON.stringify({
+      Uploader: sf.Uploader,
+      Lat: sf.Lat,
+      Lon: sf.Lon,
+      Pic: sf.Pic,
+      Description: sf.Description,
+      Orientation: sf.Orientation,
+      Area: sf.Area,
+      Level:sf.Level
+    })
+    console.log(params.toString())
+   let seq=this.http.post(this.url+'streamflow',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'},responseType:'text'})
+   return seq;
+  }
+  uploadDebris(dj:DebrisjamsInfoModel){
+    const params = JSON.stringify({
+      Uploader: dj.Uploader,
+      Lat: dj.Lat,
+      Lon: dj.Lon,
+      Pic: dj.Pic,
+      Description: dj.Description,
+      Orientation: dj.Orientation,
+      Direction: dj.Direction
+    })
+    console.log(params.toString())
+   let seq=this.http.post(this.url+'debris_jams',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'},responseType:'text'})
    return seq;
   }
 }

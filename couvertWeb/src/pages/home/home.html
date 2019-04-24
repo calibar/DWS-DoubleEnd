@@ -11,10 +11,16 @@
 
 <ion-content padding>
 
-    <button id="map" ion-button (click)="gotomap()" round clear><ion-icon name="map"  large>
-        </ion-icon>&nbsp;  Map</button><br><br>
-    <button id="map" ion-button (click)="gotoCulvert()" round clear><ion-icon name="map"  large>
+    <button id="map" ion-button full  (click)="gotomap()" round><ion-icon name="map"  large>
+        </ion-icon>&nbsp;        Map     </button><br><br>
+        <button id="basic" ion-button full (click)="gotoBasic()" round ><ion-icon name="map"  large>
+        </ion-icon>&nbsp;  Upload Basic Image</button><br><br>
+        <button id="culvert" ion-button full (click)="gotoCulvert()" round ><ion-icon name="map"  large>
         </ion-icon>&nbsp;  Upload Culvert</button><br><br>
+        <button id="sf" ion-button full  (click)="gotoSf()" round ><ion-icon name="map"  large>
+        </ion-icon>&nbsp;  Upload Streamflow</button><br><br>
+        <button id="dj" ion-button full  (click)="gotoDebris()" round ><ion-icon name="map"  large>
+        </ion-icon>&nbsp;  Upload Debris Jams</button><br><br>
     <!-- <button id="picbutton" ion-button round (click)="takePicture()" clear><ion-icon name="camera"  large>
         </ion-icon>&nbsp; Upload by camera</button><br><br>-->
     <!--<div id="upload_button">

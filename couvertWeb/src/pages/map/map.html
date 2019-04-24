@@ -17,5 +17,18 @@
 
 
 <ion-content>
+        <ion-card>
+                <ion-item>
+                   <ion-label>Current Map:</ion-label>
+                   <ion-select [(ngModel)]="currentMap" placeholder="All" style=" margin: auto;" (ionChange)="changeMap()">
+                        <ion-option value="All">All</ion-option>
+                        <ion-option value="Basic">Basic</ion-option>
+                        <ion-option value="Culvert">Culvert</ion-option>
+                        <ion-option value="Stream Flow">Stream Flow</ion-option>
+                        <ion-option value="Debirs Jams">Debris Jams</ion-option>
+                       </ion-select>
+                  </ion-item>
+            </ion-card>
+        
     <div #map id="map"></div>
 </ion-content>

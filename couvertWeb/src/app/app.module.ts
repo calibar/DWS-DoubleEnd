@@ -6,7 +6,9 @@ import { IonicApp, IonicErrorHandler, IonicModule ,LoadingController} from 'ioni
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DeviceOrientation} from '@ionic-native/device-orientation';
-
+import {BasicPage} from "./../pages/basic/basic"
+import {StreamflowPage} from "./../pages/streamflow/streamflow"
+import {DebrisJamsPage} from "./../pages/debris-jams/debris-jams"
 import {
   GoogleMaps,
   GoogleMap,
@@ -34,7 +36,10 @@ import { Geolocation } from '@ionic-native/geolocation';
     LoginPage,
     MapPage,
     SignupPage,
-    CulvertPage
+    CulvertPage,
+    BasicPage,
+    StreamflowPage,
+    DebrisJamsPage
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,10 @@ import { Geolocation } from '@ionic-native/geolocation';
     LoginPage,
     MapPage,
     SignupPage,
-    CulvertPage
+    CulvertPage,
+    BasicPage,
+    StreamflowPage,
+    DebrisJamsPage
   ],
   providers: [
     StatusBar,

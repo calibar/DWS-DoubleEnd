@@ -2,7 +2,7 @@ import { Component,ViewChild,ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Platform } from 'ionic-angular';
 import {ServiceProvider} from '../../providers/service/service'
-import {CouvertInfoModel} from '../../models/models'
+import {CouvertInfoModel,StreamflowInfoModel,BasicInfoModel,DebrisjamsInfoModel} from '../../models/models'
 import { Geolocation } from '@ionic-native/geolocation';
 import { LoadingController } from 'ionic-angular';
 import { DeviceOrientation, DeviceOrientationCompassHeading } from '@ionic-native/device-orientation';
@@ -14,6 +14,7 @@ import {
   MyLocation,
   MyLocationOptions
 } from '@ionic-native/google-maps';
+import { CurrencyPipe } from '@angular/common';
 
 /**
  * Generated class for the MapPage page.
@@ -30,12 +31,20 @@ declare var google: any;
 export class MapPage {
   @ViewChild('map') mapRef: ElementRef;
   map: any;
+  public currentMap:any
+  public basicinfoList: BasicInfoModel[];
+  public basicinfo: BasicInfoModel
   public couvertinfoList: CouvertInfoModel[];
-  public couverinfo: CouvertInfoModel
+  public couverinfo: CouvertInfoModel;
+  public sfinfoList: StreamflowInfoModel[];
+  public sfinfo:StreamflowInfoModel;
+  public djinfoList: DebrisjamsInfoModel[];
+  public djinfo:DebrisjamsInfoModel;
   private loader:any
   public MyLocationMap:any
   private subscription:any
   public CurrentDirection:any
+  public markerList: any[]
   private loadingmark="Loading Information Marks..."
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -45,8 +54,12 @@ export class MapPage {
     private loading:LoadingController,
     private deviceOrientation: DeviceOrientation) {
     this.couvertinfoList=[];  
+    this.basicinfoList=[];
+    this.sfinfoList=[];
+    this.djinfoList=[];
     this.couverinfo=new CouvertInfoModel
     this.MyLocationMap=new Map();
+    this.markerList=new Array();
     /*this.MyLocationMarker=new google.maps.Marker*/
   }
 
@@ -84,6 +97,28 @@ export class MapPage {
  
   
   }
+  changeMap(){
+    if(this.currentMap=="Basic"){
+      this.removeMarkers();
+      this.loadBasic();
+      this.loadingmark="Basic Map"
+    }else if(this.currentMap=="Culvert"){
+      this.removeMarkers();
+      this.loadCouverts();
+      this.loadingmark="Culvert Map"
+    }else if(this.currentMap=="Stream Flow"){
+      this.removeMarkers();
+      this.loadStreamflow();
+      this.loadingmark="Stream Flow Map"
+    }else if(this.currentMap=="Debris Jams"){
+      this.removeMarkers();
+      this.loadDebrisjams();
+      this.loadingmark="Debirs Jams Map"
+    }else if(this.currentMap=="All"){
+      this.loadAll()
+      this.loadingmark="DWS MAP General"
+    }
+  }
   getLocation(couverinfo){
     let loading = this.loading.create({
       content: 'Getting your location,Please wait...'
@@ -100,7 +135,14 @@ export class MapPage {
        alert("Failed to get your location")
      });
   }
-
+loadAll(){
+    this.removeMarkers();
+    this.loadBasic();
+    this.loadCouverts();
+    this.loadStreamflow();
+    this.loadDebrisjams();
+    return true
+  }
   sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
@@ -110,12 +152,16 @@ export class MapPage {
     var lon;
     const options={
       center: location,
-      zoom:15
+      zoom:10
     }
     this.map= new google.maps.Map(this.mapRef.nativeElement,options)
     /*this.gotoMyPosition();*/
     this.gotoMYpostionWeb();
+    this.loadBasic();
     this.loadCouverts();
+    this.loadStreamflow();
+    this.loadDebrisjams();
+    this.loadingmark="DWS MAP General"
   }
   reload(){
     this.navCtrl.push(MapPage)
@@ -257,13 +303,15 @@ export class MapPage {
     /*var infowindow = new google.maps.InfoWindow({
       content: content
     });*/
+    var url="http://localhost:8580/"
     var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
-    var content='<a href="'+culvert.LowPic+'" target="_blank">Low End Image</a>'
-    +'<br><br><a href="'+culvert.HighPic+'" target="_blank">High End Image</a>:&nbsp;&nbsp;&nbsp;'
+    var content='<a href="'+url+culvert.LowPic+'" target="_blank">Low End Image</a>'
+    +'<br><br><a href="'+url+culvert.HighPic+'" target="_blank">High End Image</a>:&nbsp;&nbsp;&nbsp;'
     +'<br><br>Low End Latitude:&nbsp;&nbsp;&nbsp;'+culvert.LowLat
     +'<br><br>Low End Longitude:&nbsp;&nbsp;&nbsp;'+culvert.LowLon
     +'<br><br>High End Latitude:&nbsp;&nbsp;&nbsp;'+culvert.HighLat
     +'<br><br>High End Longitude:&nbsp;&nbsp;&nbsp;'+culvert.HighLon
+    +'<br><br>Uploaded by:&nbsp;&nbsp;&nbsp;'+culvert.Uploader
     if(culvert.Description){
       content=content+'<br><br>Description:&nbsp;&nbsp;&nbsp;'+culvert.Description
     }
@@ -274,6 +322,7 @@ export class MapPage {
       infowindow.setContent(content);      
       infowindow.open(map, marker);
     });
+    this.markerList.push(marker)
    /* this.resizePic(pic,res=>{
       var content='<IMG SRC=' +res + '><br><br>Latitude:&nbsp;&nbsp;&nbsp;'+Latitude
       +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+Longitude
@@ -292,6 +341,102 @@ export class MapPage {
       });
     })*/
    
+  }
+  addBasicMarker(position,map,basic:BasicInfoModel){
+    console.log(position)
+    console.log(basic)
+    var BasicIcon="assets/icon/bluedot.png"
+    var marker= new google.maps.Marker({
+      position: position,
+      map: this.map,
+      icon: BasicIcon
+    });
+    /*var infowindow = new google.maps.InfoWindow({
+      content: content
+    });*/
+    var url="http://localhost:8580/"
+    var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
+    var content='<a href="'+url+basic.Pic+'" target="_blank">Image</a>'
+    +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+basic.Lat
+    +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+basic.Lon
+    +'<br><br>Uploaded by:&nbsp;&nbsp;&nbsp;'+basic.Uploader
+    if(basic.Description){
+      content=content+'<br><br>Description:&nbsp;&nbsp;&nbsp;'+basic.Description
+    }
+    if(basic.Orientation){
+      content=content+'<br><br>Direction:&nbsp;&nbsp;&nbsp;'+basic.Orientation
+    }
+    marker.addListener('click', function() {
+      infowindow.setContent(content);      
+      infowindow.open(map, marker);
+    });
+    this.markerList.push(marker)
+  }
+  addSfMarker(position,map,sf:StreamflowInfoModel){
+
+    var SfIcon="assets/icon/greendot.png"
+    var marker= new google.maps.Marker({
+      position: position,
+      map: this.map,
+      icon: SfIcon
+    });
+    /*var infowindow = new google.maps.InfoWindow({
+      content: content
+    });*/
+    var url="http://localhost:8580/"
+    var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
+    var content='<a href="'+url+sf.Pic+'" target="_blank">Image</a>'
+    +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+sf.Lat
+    +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+sf.Lon
+    +'<br><br>Agricultural/Urban:&nbsp;&nbsp;&nbsp;'+sf.Area
+    +'<br><br>Flow Level:&nbsp;&nbsp;&nbsp;'+sf.Level
+    +'<br><br>Uploaded by:&nbsp;&nbsp;&nbsp;'+sf.Uploader
+    if(sf.Description){
+      content=content+'<br><br>Description:&nbsp;&nbsp;&nbsp;'+sf.Description
+    }
+    if(sf.Orientation){
+      content=content+'<br><br>Direction:&nbsp;&nbsp;&nbsp;'+sf.Orientation
+    }
+    marker.addListener('click', function() {
+      infowindow.setContent(content);      
+      infowindow.open(map, marker);
+    });
+    this.markerList.push(marker)
+  }
+  addDjMarker(position,map,dj:DebrisjamsInfoModel){
+
+    var DjIcon="assets/icon/yellowdot.png"
+    var marker= new google.maps.Marker({
+      position: position,
+      map: this.map,
+      icon: DjIcon
+    });
+    /*var infowindow = new google.maps.InfoWindow({
+      content: content
+    });*/
+    var url="http://localhost:8580/"
+    var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
+    var content='<a href="'+url+dj.Pic+'" target="_blank">Image</a>'
+    +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+dj.Lat
+    +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+dj.Lon
+    +'<br><br>Direction:&nbsp;&nbsp;&nbsp;'+dj.Direction
+    +'<br><br>Uploaded by:&nbsp;&nbsp;&nbsp;'+dj.Uploader
+    if(dj.Description){
+      content=content+'<br><br>Description:&nbsp;&nbsp;&nbsp;'+dj.Description
+    }
+    if(dj.Orientation){
+      content=content+'<br><br>Direction:&nbsp;&nbsp;&nbsp;'+dj.Orientation
+    }
+    marker.addListener('click', function() {
+      infowindow.setContent(content);      
+      infowindow.open(map, marker);
+    });
+    this.markerList.push(marker)
+  }
+  removeMarkers(){
+    for(var i=0;i<this.markerList.length;i++){
+      this.markerList[i].setMap(null)
+    }
   }
   resizePic(base64,callback){
     var maxWidth = 200;
@@ -336,6 +481,42 @@ export class MapPage {
     };
    
 }
+loadBasic(){
+  let loading = this.loading.create({
+    dismissOnPageChange: true,
+    content: 'Loading couverts, it may takes a minute.&nbsp;  Please wait...'
+  });
+
+  this.service.getAllBasic()
+  .subscribe((resp:any)=>{
+   if (resp){
+      resp.forEach(element => {
+        this.basicinfo= new BasicInfoModel
+        this.basicinfo.Description=element.Description
+        this.basicinfo.Uploader=element.Uploader
+        this.basicinfo.Phototime=element.Phototime
+        this.basicinfo.Lat=element.Lat
+        this.basicinfo.Lon=element.Lon
+        this.basicinfo.Pic=element.Pic
+        this.basicinfo.Orientation=element.Orientation
+        this.basicinfoList.push(this.basicinfo)
+        let position= new google.maps.LatLng(this.basicinfo.Lat,this.basicinfo.Lon);
+        this.addBasicMarker(position,this.map,this.basicinfo)
+      });
+      /*console.log(resp)
+      console.log(this.couvertinfoList) */
+     loading.dismiss()
+      
+   }else{
+
+     console.log("no result")
+   }
+  },err=>{
+    alert("Connot connect to couverts server")
+    console.log("Cannot connect to couverts server")
+  })
+  return this.basicinfoList
+}
   loadCouverts(){
     let loading = this.loading.create({
       dismissOnPageChange: true,
@@ -363,7 +544,6 @@ export class MapPage {
         });
         /*console.log(resp)
         console.log(this.couvertinfoList) */
-        this.loadingmark="DWS MAP"
        loading.dismiss()
         
      }else{
@@ -376,6 +556,81 @@ export class MapPage {
     })
     return this.couvertinfoList
   }
+ loadStreamflow(){
+  let loading = this.loading.create({
+    dismissOnPageChange: true,
+    content: 'Loading couverts, it may takes a minute.&nbsp;  Please wait...'
+  });
+
+  this.service.getAllStreamflow()
+  .subscribe((resp:any)=>{
+   if (resp){
+      resp.forEach(element => {
+        this.sfinfo= new StreamflowInfoModel
+        this.sfinfo.Description=element.Description
+        this.sfinfo.Uploader=element.Uploader
+        this.sfinfo.Phototime=element.Phototime
+        this.sfinfo.Lat=element.Lat
+        this.sfinfo.Lon=element.Lon
+        this.sfinfo.Pic=element.Pic
+        this.sfinfo.Orientation=element.Orientation
+        this.sfinfo.Area=element.Area
+        this.sfinfo.Level=element.Level
+        this.sfinfoList.push(this.sfinfo)
+        let position= new google.maps.LatLng(this.sfinfo.Lat,this.sfinfo.Lon);
+        this.addSfMarker(position,this.map,this.sfinfo)
+      });
+      /*console.log(resp)
+      console.log(this.couvertinfoList) */
+     loading.dismiss()
+      
+   }else{
+
+     console.log("no result")
+   }
+  },err=>{
+    alert("Connot connect to couverts server")
+    console.log("Cannot connect to couverts server")
+  })
+  return this.sfinfoList
+ }
+ loadDebrisjams(){
+  let loading = this.loading.create({
+    dismissOnPageChange: true,
+    content: 'Loading couverts, it may takes a minute.&nbsp;  Please wait...'
+  });
+
+  this.service.getAllDebrisjams()
+  .subscribe((resp:any)=>{
+   if (resp){
+      resp.forEach(element => {
+        this.djinfo= new DebrisjamsInfoModel
+        this.djinfo.Description=element.Description
+        this.djinfo.Uploader=element.Uploader
+        this.djinfo.Phototime=element.Phototime
+        this.djinfo.Lat=element.Lat
+        this.djinfo.Lon=element.Lon
+        this.djinfo.Pic=element.Pic
+        this.djinfo.Orientation=element.Orientation
+        this.djinfo.Direction=element.Direction
+        this.djinfoList.push(this.djinfo)
+        let position= new google.maps.LatLng(this.djinfo.Lat,this.djinfo.Lon);
+        this.addDjMarker(position,this.map,this.djinfo)
+      });
+      /*console.log(resp)
+      console.log(this.couvertinfoList) */
+     loading.dismiss()
+      
+   }else{
+
+     console.log("no result")
+   }
+  },err=>{
+    alert("Connot connect to couverts server")
+    console.log("Cannot connect to couverts server")
+  })
+  return this.djinfoList
+ }
   ionViewWillLeave() {
     console.log("Looks like I'm about to leave :(");
   }

@@ -1,3 +1,6 @@
+import {DebrisJamsPage} from "../../pages/debris-jams/debris-jams"
+import {StreamflowPage} from "../../pages/streamflow/streamflow"
+import {BasicPage} from './../basic/basic'
 import { CulvertPage } from './../culvert/culvert';
 import { Component } from '@angular/core';
 import { NavController,LoadingController,AlertController } from 'ionic-angular';
@@ -16,6 +19,7 @@ import {
   MyLocation
 } from '@ionic-native/google-maps';
 import * as EXIF from 'exif-js';
+import { summaryFileName } from "@angular/compiler/src/aot/util";
 
 @Component({
   selector: 'page-home',
@@ -25,6 +29,9 @@ export class HomePage {
   public login:any
   public map: any
   public culvert:any
+  public basic:any
+  public sf:any
+  public dj:any
   public currentUser: any
   public couvertinfoList: CouvertInfoModel[];
   private loader:any
@@ -41,7 +48,10 @@ export class HomePage {
       this.login=LoginPage;
       this.couvertinfoList=[];   
       this.map=MapPage;
+      this.basic=BasicPage
       this.culvert=CulvertPage;
+      this.sf=StreamflowPage;
+      this.dj=DebrisJamsPage
       this.couverinfo= new CouvertInfoModel
   }
   ionViewDidLoad(){
@@ -371,7 +381,17 @@ export class HomePage {
     
     this.navCtrl.push(this.map)
   }
+  gotoBasic(){
+    this.navCtrl.push(this.basic)
+  }
+  gotoSf(){
+    this.navCtrl.push(this.sf)
+  }
+  gotoDebris(){
+    this.navCtrl.push(this.dj)
+  }
   gotoCulvert(){
     this.navCtrl.push(this.culvert)
   }
+  
 }

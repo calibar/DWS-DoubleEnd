@@ -14,3 +14,9 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.item-radio-checked.item ion-label {
+    color: black !important; //your color here for selected option
+}
+.item-radio.item ion-label {
+    color: black; //your color here
+}
