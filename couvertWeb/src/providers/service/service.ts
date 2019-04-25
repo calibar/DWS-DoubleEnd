@@ -12,7 +12,7 @@ import {CouvertInfoModel,BasicInfoModel,StreamflowInfoModel,DebrisjamsInfoModel}
 */
 @Injectable()
 export class ServiceProvider {
-  url="http://localhost:8580/v1/"
+  url="http://159.89.127.33:443/v1/"
   /*urlAndroid="http://10.0.2.2:9000/"*/
   urlAndroid="http://167.99.185.11:9005/"
   constructor(public http: HttpClient,public api:ApiProvider) {

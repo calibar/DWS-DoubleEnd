@@ -141,7 +141,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
   upload(){
     if(this.djinfo.Lat&&this.djinfo.Lon){
         this.loader = this.loading.create({
-          duration:15000,
+          duration:60000,
           content: 'Uploading Couvert infomation. Please wait...'
         });
         this.loader.onDidDismiss(()=>{

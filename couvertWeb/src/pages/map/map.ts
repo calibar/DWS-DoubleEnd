@@ -12,7 +12,8 @@ import {
   GoogleMap,
   GoogleMapOptions,
   MyLocation,
-  MyLocationOptions
+  MyLocationOptions,
+  GoogleMaps
 } from '@ionic-native/google-maps';
 import { CurrencyPipe } from '@angular/common';
 
@@ -31,6 +32,7 @@ declare var google: any;
 export class MapPage {
   @ViewChild('map') mapRef: ElementRef;
   map: any;
+  url="http://159.89.127.33:443/"
   public currentMap:any
   public basicinfoList: BasicInfoModel[];
   public basicinfo: BasicInfoModel
@@ -110,7 +112,7 @@ export class MapPage {
       this.removeMarkers();
       this.loadStreamflow();
       this.loadingmark="Stream Flow Map"
-    }else if(this.currentMap=="Debris Jams"){
+    }else if(this.currentMap=="Debirs Jams"){
       this.removeMarkers();
       this.loadDebrisjams();
       this.loadingmark="Debirs Jams Map"
@@ -296,17 +298,21 @@ loadAll(){
   }
 
   addMarker(position,map,culvert:CouvertInfoModel){
+    var culvertIcon="assets/icon/pinkdot.png"
     var marker= new google.maps.Marker({
       position: position,
       map: map,
+      icon: {
+        url:culvertIcon,
+        scaledSize:new google.maps.Size(38,38)
+      }
     });
     /*var infowindow = new google.maps.InfoWindow({
       content: content
     });*/
-    var url="http://localhost:8580/"
     var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
-    var content='<a href="'+url+culvert.LowPic+'" target="_blank">Low End Image</a>'
-    +'<br><br><a href="'+url+culvert.HighPic+'" target="_blank">High End Image</a>:&nbsp;&nbsp;&nbsp;'
+    var content='<a href="'+this.url+culvert.LowPic+'" target="_blank">Low End Image</a>'
+    +'<br><br><a href="'+this.url+culvert.HighPic+'" target="_blank">High End Image</a>:&nbsp;&nbsp;&nbsp;'
     +'<br><br>Low End Latitude:&nbsp;&nbsp;&nbsp;'+culvert.LowLat
     +'<br><br>Low End Longitude:&nbsp;&nbsp;&nbsp;'+culvert.LowLon
     +'<br><br>High End Latitude:&nbsp;&nbsp;&nbsp;'+culvert.HighLat
@@ -349,14 +355,16 @@ loadAll(){
     var marker= new google.maps.Marker({
       position: position,
       map: this.map,
-      icon: BasicIcon
+      icon: {
+        url:BasicIcon,
+        scaledSize:new google.maps.Size(43,43)
+      }
     });
     /*var infowindow = new google.maps.InfoWindow({
       content: content
     });*/
-    var url="http://localhost:8580/"
     var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
-    var content='<a href="'+url+basic.Pic+'" target="_blank">Image</a>'
+    var content='<a href="'+this.url+basic.Pic+'" target="_blank">Image</a>'
     +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+basic.Lat
     +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+basic.Lon
     +'<br><br>Uploaded by:&nbsp;&nbsp;&nbsp;'+basic.Uploader
@@ -378,14 +386,16 @@ loadAll(){
     var marker= new google.maps.Marker({
       position: position,
       map: this.map,
-      icon: SfIcon
+      icon: {
+        url:SfIcon,
+        scaledSize:new google.maps.Size(33,33)
+      }
     });
     /*var infowindow = new google.maps.InfoWindow({
       content: content
     });*/
-    var url="http://localhost:8580/"
     var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
-    var content='<a href="'+url+sf.Pic+'" target="_blank">Image</a>'
+    var content='<a href="'+this.url+sf.Pic+'" target="_blank">Image</a>'
     +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+sf.Lat
     +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+sf.Lon
     +'<br><br>Agricultural/Urban:&nbsp;&nbsp;&nbsp;'+sf.Area
@@ -409,14 +419,17 @@ loadAll(){
     var marker= new google.maps.Marker({
       position: position,
       map: this.map,
-      icon: DjIcon
+      icon: {
+        url:DjIcon,
+        scaledSize:new google.maps.Size(28,28)
+      }
     });
     /*var infowindow = new google.maps.InfoWindow({
       content: content
     });*/
-    var url="http://localhost:8580/"
+
     var infowindow = new google.maps.InfoWindow({ maxWidth: 300 })
-    var content='<a href="'+url+dj.Pic+'" target="_blank">Image</a>'
+    var content='<a href="'+this.url+dj.Pic+'" target="_blank">Image</a>'
     +'<br><br>Latitude:&nbsp;&nbsp;&nbsp;'+dj.Lat
     +'<br><br>Longitude:&nbsp;&nbsp;&nbsp;'+dj.Lon
     +'<br><br>Direction:&nbsp;&nbsp;&nbsp;'+dj.Direction
