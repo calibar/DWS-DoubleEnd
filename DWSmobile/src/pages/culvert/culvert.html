@@ -1,0 +1,202 @@
+<!--
+  Generated template for the CulvertPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Upload Culvert</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <div *ngIf="!lowEndImage">
+        &nbsp;&nbsp;
+        <button id="picbutton1" ion-button full (click)="takePicture(false)" round> <ion-icon name="camera" ></ion-icon>&nbsp;&nbsp;Take Photo For Low-end</button>
+    </div>
+    <div *ngIf="!highEndImage">
+        &nbsp;&nbsp;&nbsp;<button id="picbutton2" ion-button full (click)="takePicture(true)" round> <ion-icon name="camera" ></ion-icon>&nbsp;&nbsp;Take Photo For High-end</button>
+        <br><br>
+    </div>
+    <div *ngIf="!lowEndImage">
+
+        <div id="upload_button">
+            <label>
+        <ion-label id="fileChoose" color="primary">
+          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,'low')">
+         <ion-icon name="albums"></ion-icon>
+          <span class="btn btn-primary">&nbsp;Low End of Culvert</span>
+        </ion-label>
+      </label>
+        </div>
+    </div>
+
+    <div *ngIf="lowEndImage">
+        <div>
+            <br><img class="image-client" [src]="lowEndImage" *ngIf="lowEndImage" height="200" width="200" />
+        </div>
+        <ion-list>
+            <!--<ion-card>
+                <ion-item>
+                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>
+                </ion-item>
+            </ion-card>-->
+            <div *ngIf="!couverinfo.LowLat||!couverinfo.LowLon">
+                <div *ngIf="!LCamera">
+                    <ion-card>
+                        <ion-item>
+                            <label>This photo does not have location information, it cannot be uploaded</label>
+                        </ion-item>
+                    </ion-card>
+                    <button ion-button (click)="cancelLow()" clear>Reselect Low-end Picture</button>
+                </div>
+                <div *ngIf="LCamera">
+                    <button id="posbutton1" ion-button full (click)="getPos(false)" outline> <ion-icon name="locate" ></ion-icon>&nbsp;&nbsp;Locate</button>
+                    <ion-card>
+                        <ion-item>
+                            <label>Please Click the button to locate</label>
+                        </ion-item>
+                    </ion-card>
+                </div>
+
+            </div>
+            <ion-card *ngIf="couverinfo.LowLat">
+                <ion-item>
+                    <ion-label> &nbsp; Low end Latitude: {{couverinfo.LowLat}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.LowLon">
+                <ion-item>
+                    <ion-label> &nbsp; Low end longitude: {{couverinfo.LowLon}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.Orientation">
+                <ion-item>
+                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.Phototime">
+                <ion-item>
+                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <div *ngIf="couverinfo.LowLat&&couverinfo.LowLon">
+                <button ion-button (click)="cancelLow()" clear>Reselect Low-end Picture</button>
+            </div>
+            <!--<ion-card>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
+                </ion-item>
+            </ion-card>-->
+            <!--<ion-item *ngIf="!couverinfo.Phototime">
+                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>
+            </ion-item>-->
+        </ion-list>
+
+        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
+        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->
+    </div>
+
+    <br><br>
+    <div *ngIf="!highEndImage">
+
+        <div id="upload_button">
+            <label>
+        <ion-label id="fileChoose" color="primary">
+          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,'high')">
+         <ion-icon name="albums"></ion-icon>
+          <span class="btn btn-primary">&nbsp;High End of Culvert</span>
+        </ion-label>
+      </label>
+        </div>
+    </div>
+
+    <div *ngIf="highEndImage">
+        <div>
+            <br><img class="image-client" [src]="highEndImage" *ngIf="highEndImage" height="200" width="200" />
+        </div>
+        <ion-list>
+            <!--<ion-card>
+                <ion-item>
+                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>
+                </ion-item>
+            </ion-card>-->
+            <div *ngIf="!couverinfo.HighLat||!couverinfo.HighLon">
+                <div *ngIf="!HCamera">
+                    <ion-card>
+                        <ion-item>
+                            <label>This photo does not have location information, it cannot be uploaded</label>
+                        </ion-item>
+                    </ion-card>
+                    <button ion-button (click)="cancelHigh()" clear>Reselect High-end Picture</button>
+                </div>
+                <div *ngIf="HCamera">
+                    <button id="posbutton1" ion-button full (click)="getPos(false)" outline> <ion-icon name="locate" ></ion-icon>&nbsp;&nbsp;Locate</button>
+                    <ion-card>
+                        <ion-item>
+                            <label>Please Click the button to locate</label>
+                        </ion-item>
+                    </ion-card>
+                </div>
+            </div>
+            <ion-card *ngIf="couverinfo.HighLat">
+                <ion-item>
+                    <ion-label> &nbsp; High end Latitude: {{couverinfo.HighLat}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.HighLon">
+                <ion-item>
+                    <ion-label> &nbsp; High end longitude: {{couverinfo.HighLon}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.Orientation">
+                <ion-item>
+                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="couverinfo.Phototime">
+                <ion-item>
+                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <div *ngIf="couverinfo.HighLat&&couverinfo.HighLon">
+                <button ion-button (click)="cancelHigh()" clear>Reselect High-end Picture</button>
+            </div>
+            <!--<ion-card>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
+                </ion-item>
+            </ion-card>-->
+            <!--<ion-item *ngIf="!couverinfo.Phototime">
+                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>
+                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>
+            </ion-item>-->
+        </ion-list>
+
+        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
+        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->
+    </div>
+    <div *ngIf="highEndImage && lowEndImage">
+        <div *ngIf="couverinfo.LowLat&&couverinfo.HighLat">
+            <ion-card>
+                <ion-item>
+                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
+                </ion-item>
+            </ion-card>
+            <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
+        </div>
+
+        <button ion-button (click)="cancelUpload()" clear>Cancel</button>
+    </div>
+
+</ion-content>
