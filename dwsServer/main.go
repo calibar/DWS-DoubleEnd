@@ -13,6 +13,7 @@ import (
 
 func init() {
 	orm.RegisterDataBase("default", "mysql", "root:lmx1993917@tcp(127.0.0.1:3306)/culvert")
+
 }
 func listAll(path string) {
 	files, _ := ioutil.ReadDir(path)

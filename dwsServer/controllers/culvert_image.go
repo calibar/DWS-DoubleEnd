@@ -58,8 +58,8 @@ func (c *CulvertImageController) Post() {
 		current=strings.Replace(current,":","A",-1)
 		low_file_name:=v.Uploader+"_"+"low"+"_"+current+".jpg"
 		high_file_name:=v.Uploader+"_"+"high"+"_"+current+".jpg"
-		low_pic_file,err:=os.Create("Pics\\"+v.Uploader+"\\"+low_file_name)
-		high_pic_file,err:=os.Create("Pics\\"+v.Uploader+"\\"+high_file_name)
+		low_pic_file,err:=os.Create("Pics/"+v.Uploader+"/"+low_file_name)
+		high_pic_file,err:=os.Create("Pics/"+v.Uploader+"/"+high_file_name)
 		if err!=nil{
 			fmt.Println(err.Error())
 		}

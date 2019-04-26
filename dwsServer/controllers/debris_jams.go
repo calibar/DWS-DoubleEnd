@@ -45,7 +45,7 @@ func (c *DebrisJamsController) Post() {
 		current:=time.Now().Format(time.RFC3339)
 		current=strings.Replace(current,":","A",-1)
 		file_name:=v.Uploader+"_"+"DebrisJams"+"_"+current+".jpg"
-		pic_file,err:=os.Create("Pics\\"+v.Uploader+"\\"+file_name)
+		pic_file,err:=os.Create("Pics/"+v.Uploader+"/"+file_name)
 		if err!=nil{
 			fmt.Println(err)
 		}

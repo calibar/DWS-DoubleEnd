@@ -44,7 +44,7 @@ func (c *UserController) Post() {
 			if _, err := models.AddUser(&v); err == nil {
 				c.Ctx.Output.SetStatus(201)
 				c.Ctx.ResponseWriter.Write([]byte(v.Username))
-				err:=os.MkdirAll("Pics\\"+v.Username,0755)
+				err:=os.MkdirAll("Pics/"+v.Username,0755)
 				if err!=nil{
 					log.Fatal(err)
 				}
