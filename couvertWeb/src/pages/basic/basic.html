@@ -6,87 +6,98 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-      <ion-title>Upload Basic Image</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>Upload Basic Image</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <div *ngIf="!Image">
-      <div id="upload_button">
-          <label>
+    <div *ngIf="!Image">
+        <div id="upload_button">
+            <label>
       <ion-label id="fileChoose" color="primary">
         <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">
        <ion-icon name="albums"></ion-icon>
         <span class="btn btn-primary">&nbsp;Explore Image</span>
       </ion-label>
     </label>
-      </div>
-  </div>
+        </div>
+    </div>
 
-  <div *ngIf="Image">
-      <div>
-          <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />
-      </div>
-      <ion-list>
-          <!--<ion-card>
+    <div *ngIf="Image">
+        <div>
+            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />
+        </div>
+        <ion-list>
+            <!--<ion-card>
               <ion-item>
                   <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>
               </ion-item>
           </ion-card>-->
-          <ion-card *ngIf="basicinfo.Lat">
-              <ion-item>
-                  <ion-label> &nbsp; Latitude: {{basicinfo.Lat}}</ion-label>
-              </ion-item>
-          </ion-card>
-          <ion-card *ngIf="basicinfo.Lon">
-              <ion-item>
-                  <ion-label> &nbsp; longitude: {{basicinfo.Lon}}</ion-label>
-              </ion-item>
-          </ion-card>
-          <ion-card *ngIf="basicinfo.Orientation">
-              <ion-item>
-                  <ion-label> &nbsp; Direction: {{basicinfo.Orientation}}</ion-label>
-              </ion-item>
-          </ion-card>
-          <ion-card *ngIf="basicinfo.Phototime">
-              <ion-item>
-                  <ion-label> &nbsp; Photoed Time : {{basicinfo.Phototime}}</ion-label>
-              </ion-item>
-          </ion-card>
+            <ion-card *ngIf="basicinfo.Lat">
+                <ion-item>
+                    <ion-label> &nbsp; Latitude: {{basicinfo.Lat}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="basicinfo.Lon">
+                <ion-item>
+                    <ion-label> &nbsp; longitude: {{basicinfo.Lon}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="basicinfo.Orientation">
+                <ion-item>
+                    <ion-label> &nbsp; Direction: {{basicinfo.Orientation}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card *ngIf="basicinfo.Phototime">
+                <ion-item>
+                    <ion-label> &nbsp; Photoed Time : {{basicinfo.Phototime}}</ion-label>
+                </ion-item>
+            </ion-card>
 
-          <!--<ion-card>
+            <!--<ion-card>
               <ion-item>
                   <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
               </ion-item>
           </ion-card>-->
-          <!--<ion-item *ngIf="!couverinfo.Phototime">
+            <!--<ion-item *ngIf="!couverinfo.Phototime">
               <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>
               <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>
           </ion-item>-->
-      </ion-list>
+        </ion-list>
 
-      <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
+        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
       <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->
-  </div>
-
-  
+    </div>
 
 
-  <div *ngIf="Image">
-      <ion-card>
-          <ion-item>
-              <ion-label> &nbsp; Uploader : {{basicinfo.Uploader}}</ion-label>
-          </ion-item>
-      </ion-card>
-      <ion-card>
-          <ion-item>
-              <ion-input type="text" [(ngModel)]="basicinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
-          </ion-item>
-      </ion-card>
-      <button ion-button (click)="upload()" clear>Upload Information</button>
-      <button ion-button (click)="cancelUpload()" clear>Cancel</button>
-  </div>
+
+
+    <div *ngIf="Image">
+
+
+        <div *ngIf="basicinfo.Lat">
+            <ion-card>
+                <ion-item>
+                    <ion-label> &nbsp; Uploader : {{basicinfo.Uploader}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="basicinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
+                </ion-item>
+            </ion-card>
+            <button ion-button (click)="upload()" clear>Upload Information</button>
+        </div>
+        <div *ngIf="!basicinfo.Lat">
+            <ion-card>
+                <ion-item>
+                    <label>This photo does not have location information, it cannot be uploaded</label>
+                </ion-item>
+            </ion-card>
+        </div>
+        <button ion-button (click)="cancelUpload()" clear>Cancel</button>
+    </div>
 </ion-content>

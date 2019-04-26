@@ -109,7 +109,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
           couverinfo.Phototime=photoedTime.replace(':','-')*/
           
         }else{
-          alert("Your picture do not have location information, Please describe photoed location and time in the Description section.")
+          alert("This photo does not have location information, it cannot be uploaded")
           /*couverinfo.Photoedtime="2018-01-01 00:00:00"*/
           /*var alerting :AlertController
           let alertbox= alerting.create({
@@ -142,7 +142,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     if(this.sfinfo.Lat&&this.sfinfo.Lon){
         this.loader = this.loading.create({
           duration:60000,
-          content: 'Uploading Couvert infomation. Please wait...'
+          content: 'Uploading infomation. Please wait...'
         });
         this.loader.onDidDismiss(()=>{
           this.presentAlert("Time out","Time out. No connection to server.")
@@ -170,7 +170,8 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
         this.Image=""
       this.initCouverinfo();
     }else{
-      alert("Please Upload full culvert info, Picture with on loaction information will not be able to upload")
+      alert("Please Upload full Stream Flow info, Picture with out loaction information will not be able to upload")
+      this.cancelUpload();
     }
   }
   cancelUpload(){

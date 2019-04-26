@@ -41,14 +41,8 @@ export class BasicPage {
   async readThis(inputValue: any) {
     var file= inputValue.files[0];
    var result=await this.getExifData(file,this.basicinfo)
-
- /* this.couverinfo.Lat=result[0];
-  this.couverinfo.Lon=result[1];
-  this.couverinfo.Phototime=result[2];*/
-/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-    var myReader:FileReader = new FileReader();
+    
+      var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
       this.Image = myReader.result;
@@ -57,13 +51,20 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
       this.basicinfo.Pic=str[1];
     }
     myReader.readAsDataURL(file);
+ /* this.couverinfo.Lat=result[0];
+  this.couverinfo.Lon=result[1];
+  this.couverinfo.Phototime=result[2];*/
+/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
+    
   }
 
   changeListener($event) : void {
     this.readThis($event.target)
 
   }
-
+ 
   getExifData(file,basic){
     return new Promise(resolve => {
       var latitude,longitude,photoedTime
@@ -108,7 +109,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
           couverinfo.Phototime=photoedTime.replace(':','-')*/
           
         }else{
-          alert("Your picture do not have location information, Please describe photoed location and time in the Description section.")
+          alert("This photo does not have location information, it cannot be uploaded")
           /*couverinfo.Photoedtime="2018-01-01 00:00:00"*/
           /*var alerting :AlertController
           let alertbox= alerting.create({
@@ -123,6 +124,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
             buttons: ['OK']
           });
           alert.present();*/
+          
         }
        
     });
@@ -141,7 +143,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     if(this.basicinfo.Lat&&this.basicinfo.Lon){
         this.loader = this.loading.create({
           duration:60000,
-          content: 'Uploading Couvert infomation. Please wait...'
+          content: 'Uploading infomation. Please wait...'
         });
         this.loader.onDidDismiss(()=>{
           this.presentAlert("Time out","Time out. No connection to server.")
@@ -169,7 +171,9 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
         this.Image=""
       this.initCouverinfo();
     }else{
-      alert("Please Upload full culvert info, Picture with on loaction information will not be able to upload")
+      alert("Please Upload full basic info, Picture with out loaction information will not be able to upload")
+      this.cancelUpload()
+
     }
   }
   cancelUpload(){

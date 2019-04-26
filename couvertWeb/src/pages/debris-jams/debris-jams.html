@@ -9,11 +9,11 @@
     <ion-navbar color="primary">
         <ion-title>Upload Debris Jams Image</ion-title>
     </ion-navbar>
-  
-  </ion-header>
-  
-  
-  <ion-content padding>
+
+</ion-header>
+
+
+<ion-content padding>
     <div *ngIf="!Image">
         <div id="upload_button">
             <label>
@@ -25,7 +25,7 @@
       </label>
         </div>
     </div>
-  
+
     <div *ngIf="Image">
         <div>
             <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />
@@ -56,7 +56,7 @@
                     <ion-label> &nbsp; Photoed Time : {{djinfo.Phototime}}</ion-label>
                 </ion-item>
             </ion-card>
-  
+
             <!--<ion-card>
                 <ion-item>
                     <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
@@ -67,41 +67,51 @@
                 <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>
             </ion-item>-->
         </ion-list>
-  
+
         <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>
         <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->
     </div>
-  
-    
-  
-  
+
+
+
+
     <div *ngIf="Image">
-        <ion-card>
-            <ion-item>
-                <ion-label> &nbsp; Uploader : {{djinfo.Uploader}}</ion-label>
-            </ion-item>
-        </ion-card>
-        <ion-card>
-            <ion-item>
-                <ion-input type="text" [(ngModel)]="djinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
-            </ion-item>
-        </ion-card>
-      <ion-card>
-          <ion-item>
-             <ion-label>Direction:</ion-label>
-             <ion-select [(ngModel)]="djinfo.Direction" placeholder="Chose a Direction">
-              <ion-option value="North">North</ion-option>
-              <ion-option value="NorthEast">NorthEast</ion-option>
-              <ion-option value="East">East</ion-option>
-              <ion-option value="SouthEast">SouthEast</ion-option>
-              <ion-option value="South">South</ion-option>
-              <ion-option value="SouthWest">SouthWest</ion-option>
-              <ion-option value="West">West</ion-option>
-              <ion-option value="NorthWest">NorthWest</ion-option>
-             </ion-select>
-            </ion-item>
-      </ion-card>
-        <button ion-button (click)="upload()" clear>Upload Information</button>
+
+        <div *ngIf="djinfo.Lat">
+            <ion-card>
+                <ion-item>
+                    <ion-label> &nbsp; Uploader : {{djinfo.Uploader}}</ion-label>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-input type="text" [(ngModel)]="djinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>
+                </ion-item>
+            </ion-card>
+            <ion-card>
+                <ion-item>
+                    <ion-label>Direction:</ion-label>
+                    <ion-select [(ngModel)]="djinfo.Direction" placeholder="Chose a Direction">
+                        <ion-option value="North">North</ion-option>
+                        <ion-option value="NorthEast">NorthEast</ion-option>
+                        <ion-option value="East">East</ion-option>
+                        <ion-option value="SouthEast">SouthEast</ion-option>
+                        <ion-option value="South">South</ion-option>
+                        <ion-option value="SouthWest">SouthWest</ion-option>
+                        <ion-option value="West">West</ion-option>
+                        <ion-option value="NorthWest">NorthWest</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-card>
+            <button ion-button (click)="upload()" clear>Upload Information</button>
+        </div>
+        <div *ngIf="!djinfo.Lat">
+            <ion-card>
+                <ion-item>
+                    <label>This photo does not have location information, it cannot be uploaded</label>
+                </ion-item>
+            </ion-card>
+        </div>
         <button ion-button (click)="cancelUpload()" clear>Cancel</button>
     </div>
-  </ion-content>
+</ion-content>
