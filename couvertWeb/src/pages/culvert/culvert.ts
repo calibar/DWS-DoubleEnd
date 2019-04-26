@@ -167,7 +167,7 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
       this.couverinfo.HighLat&&
       this.couverinfo.HighLon){
         this.loader = this.loading.create({
-          duration:60000,
+          duration:120000,
           content: 'Uploading infomation. Please wait...'
         });
         this.loader.onDidDismiss(()=>{

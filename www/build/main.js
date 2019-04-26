@@ -232,7 +232,7 @@ var CulvertPage = /** @class */ (function () {
             this.couverinfo.HighLat &&
             this.couverinfo.HighLon) {
             this.loader = this.loading.create({
-                duration: 60000,
+                duration: 120000,
                 content: 'Uploading infomation. Please wait...'
             });
             this.loader.onDidDismiss(function () {
@@ -298,10 +298,13 @@ var CulvertPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-culvert',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Culvert</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!lowEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'low\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Low End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="lowEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="lowEndImage" *ngIf="lowEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.LowLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelLow()" clear>Reselect Low-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.LowLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end Latitude: {{couverinfo.LowLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.LowLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end longitude: {{couverinfo.LowLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n    <br><br>\n\n    <div *ngIf="!highEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'high\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;High End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="highEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="highEndImage" *ngIf="highEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.HighLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelHigh()" clear>Reselect High-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.HighLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end Latitude: {{couverinfo.HighLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.HighLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end longitude: {{couverinfo.HighLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n    <div *ngIf="highEndImage && lowEndImage">\n\n        <div *ngIf="couverinfo.LowLat&&couverinfo.HighLat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        </div>\n\n\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* ServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* ServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__providers_service_service__["a" /* ServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], CulvertPage);
     return CulvertPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=culvert.js.map
@@ -539,10 +542,13 @@ var BasicPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-basic',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Basic Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="basicinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{basicinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{basicinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{basicinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{basicinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n\n\n        <div *ngIf="basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{basicinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="basicinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], BasicPage);
     return BasicPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=basic.js.map
@@ -550,100 +556,6 @@ var BasicPage = /** @class */ (function () {
 /***/ }),
 
 /***/ 110:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(84);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SignupPage = /** @class */ (function () {
-    function SignupPage(navCtrl, navParams, service) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.service = service;
-        this.User = new __WEBPACK_IMPORTED_MODULE_2__models_models__["e" /* UserInfoModel */];
-        this.home = __WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */];
-    }
-    SignupPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SignupPage');
-    };
-    SignupPage.prototype.signup = function () {
-        var _this = this;
-        if (this.User.username != "" && this.User.pwd != "") {
-            if (this.User.pwd == this.ConfirmPWD) {
-                this.service.signup(this.User.username, this.User.pwd)
-                    .subscribe(function (data) {
-                    console.log(data);
-                    if (data == _this.User.username) {
-                        localStorage.setItem('CurrentUser', _this.User.username);
-                        _this.navCtrl.setRoot(_this.home);
-                        _this.navCtrl.popToRoot;
-                    }
-                    else if (data == "existed") {
-                        alert("username has already existed");
-                    }
-                }, function (err) {
-                    console.log(err.error);
-                });
-            }
-            else {
-                alert("Password and Confirm Password are not matched, Please check again.");
-            }
-            /* .subscribe((resp) => {
-    
-                console.log("hello");
-                alert(resp)
-                //this.img.ID=uuid;
-               
-                
-              }, (err) => {
-                
-                console.log(err);
-              });*/
-        }
-        else {
-            alert("Username and Password cannot be null.");
-        }
-    };
-    SignupPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-signup',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Signup</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n\n\n        <ion-item>\n\n            <ion-label stacked>Username</ion-label>\n\n            <ion-input type="text" [(ngModel)]="User.username"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <ion-label stacked>Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="User.pwd"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label stacked>Confirm Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="ConfirmPWD"></ion-input>\n\n        </ion-item>\n\n    </ion-list>\n\n    <button ion-button outline (click)="signup()" full>sign up</button>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\signup\signup.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */]])
-    ], SignupPage);
-    return SignupPage;
-}());
-
-//# sourceMappingURL=signup.js.map
-
-/***/ }),
-
-/***/ 111:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -882,13 +794,110 @@ var DebrisJamsPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-debris-jams',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Debris Jams Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <ion-card *ngIf="djinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{djinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{djinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{djinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{djinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n        <div *ngIf="djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{djinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="djinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Direction:</ion-label>\n\n                    <ion-select [(ngModel)]="djinfo.Direction" placeholder="Chose a Direction">\n\n                        <ion-option value="North">North</ion-option>\n\n                        <ion-option value="NorthEast">NorthEast</ion-option>\n\n                        <ion-option value="East">East</ion-option>\n\n                        <ion-option value="SouthEast">SouthEast</ion-option>\n\n                        <ion-option value="South">South</ion-option>\n\n                        <ion-option value="SouthWest">SouthWest</ion-option>\n\n                        <ion-option value="West">West</ion-option>\n\n                        <ion-option value="NorthWest">NorthWest</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], DebrisJamsPage);
     return DebrisJamsPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=debris-jams.js.map
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SignupPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_models__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_service_service__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__home_home__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+/**
+ * Generated class for the SignupPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var SignupPage = /** @class */ (function () {
+    function SignupPage(navCtrl, navParams, service) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.service = service;
+        this.User = new __WEBPACK_IMPORTED_MODULE_2__models_models__["e" /* UserInfoModel */];
+        this.home = __WEBPACK_IMPORTED_MODULE_4__home_home__["a" /* HomePage */];
+    }
+    SignupPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SignupPage');
+    };
+    SignupPage.prototype.signup = function () {
+        var _this = this;
+        if (this.User.username != "" && this.User.pwd != "") {
+            if (this.User.pwd == this.ConfirmPWD) {
+                this.service.signup(this.User.username, this.User.pwd)
+                    .subscribe(function (data) {
+                    console.log(data);
+                    if (data == _this.User.username) {
+                        localStorage.setItem('CurrentUser', _this.User.username);
+                        _this.navCtrl.setRoot(_this.home);
+                        _this.navCtrl.popToRoot;
+                    }
+                    else if (data == "existed") {
+                        alert("username has already existed");
+                    }
+                }, function (err) {
+                    console.log(err.error);
+                });
+            }
+            else {
+                alert("Password and Confirm Password are not matched, Please check again.");
+            }
+            /* .subscribe((resp) => {
+    
+                console.log("hello");
+                alert(resp)
+                //this.img.ID=uuid;
+               
+                
+              }, (err) => {
+                
+                console.log(err);
+              });*/
+        }
+        else {
+            alert("Username and Password cannot be null.");
+        }
+    };
+    SignupPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-signup',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\signup\signup.html"*/'<!--\n\n  Generated template for the SignupPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Signup</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <ion-list>\n\n\n\n        <ion-item>\n\n            <ion-label stacked>Username</ion-label>\n\n            <ion-input type="text" [(ngModel)]="User.username"></ion-input>\n\n        </ion-item>\n\n\n\n        <ion-item>\n\n            <ion-label stacked>Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="User.pwd"></ion-input>\n\n        </ion-item>\n\n        <ion-item>\n\n            <ion-label stacked>Confirm Password</ion-label>\n\n            <ion-input type="password" [(ngModel)]="ConfirmPWD"></ion-input>\n\n        </ion-item>\n\n    </ion-list>\n\n    <button ion-button outline (click)="signup()" full>sign up</button>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\signup\signup.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */]])
+    ], SignupPage);
+    return SignupPage;
+}());
+
+//# sourceMappingURL=signup.js.map
 
 /***/ }),
 
@@ -1135,10 +1144,13 @@ var StreamflowPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-streamflow',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Streamflow Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="sfinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{sfinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{sfinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{sfinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{sfinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n        <div *ngIf="sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{sfinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="sfinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Agricultural/Urban:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Area" placeholder="agricultural">\n\n                        <ion-option value="agricultural">agricultural</ion-option>\n\n                        <ion-option value="urban">urban</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>flow Level:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Level" placeholder="Chose a level">\n\n                        <ion-option value="low">low</ion-option>\n\n                        <ion-option value="medium">medium</ion-option>\n\n                        <ion-option value="high">high</ion-option>\n\n                        <ion-option value="extreme">extreme</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_service_service__["a" /* ServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* LoadingController */],
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
     ], StreamflowPage);
     return StreamflowPage;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=streamflow.js.map
@@ -1802,11 +1814,11 @@ var map = {
 		5
 	],
 	"../pages/debris-jams/debris-jams.module": [
-		299,
+		298,
 		4
 	],
 	"../pages/login/login.module": [
-		298,
+		299,
 		3
 	],
 	"../pages/map/map.module": [
@@ -2094,7 +2106,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_culvert_culvert__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_signup_signup__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_signup_signup__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(12);
@@ -2103,7 +2115,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_device_orientation__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_basic_basic__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_streamflow_streamflow__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_debris_jams_debris_jams__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_debris_jams_debris_jams__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__app_component__ = __webpack_require__(294);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_home_home__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_login_login__ = __webpack_require__(55);
@@ -2165,8 +2177,8 @@ var AppModule = /** @class */ (function () {
                     links: [
                         { loadChildren: '../pages/basic/basic.module#BasicPageModule', name: 'BasicPage', segment: 'basic', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/culvert/culvert.module#CulvertPageModule', name: 'CulvertPage', segment: 'culvert', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/debris-jams/debris-jams.module#DebrisJamsPageModule', name: 'DebrisJamsPage', segment: 'debris-jams', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/map/map.module#MapPageModule', name: 'MapPage', segment: 'map', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/signup/signup.module#SignupPageModule', name: 'SignupPage', segment: 'signup', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/streamflow/streamflow.module#StreamflowPageModule', name: 'StreamflowPage', segment: 'streamflow', priority: 'low', defaultHistory: [] }
@@ -2392,7 +2404,7 @@ var MyApp = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__signup_signup__ = __webpack_require__(110);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__signup_signup__ = __webpack_require__(111);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_models__ = __webpack_require__(28);
@@ -2529,7 +2541,7 @@ var LoginPage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_debris_jams_debris_jams__ = __webpack_require__(111);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_debris_jams_debris_jams__ = __webpack_require__(110);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_streamflow_streamflow__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__basic_basic__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__culvert_culvert__ = __webpack_require__(108);
