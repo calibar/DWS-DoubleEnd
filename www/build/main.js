@@ -20,41 +20,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
@@ -82,64 +47,44 @@ var CulvertPage = /** @class */ (function () {
         console.log('ionViewDidLoad CulvertPage');
     };
     CulvertPage.prototype.readThisLow = function (inputValue) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var file, result, myReader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = inputValue.files[0];
-                        return [4 /*yield*/, this.getExifData(file, this.couverinfo, "low")
-                            /* this.couverinfo.Lat=result[0];
-                             this.couverinfo.Lon=result[1];
-                             this.couverinfo.Phototime=result[2];*/
-                            /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-                            this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-                            this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-                        ];
-                    case 1:
-                        result = _a.sent();
-                        myReader = new FileReader();
-                        myReader.onloadend = function (e) {
-                            _this.lowEndImage = myReader.result;
-                            var str = _this.lowEndImage.split('base64,');
-                            _this.couverinfo.LowPic = str[1];
-                        };
-                        myReader.readAsDataURL(file);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        var file = inputValue.files[0];
+        this.getExifData(file, this.couverinfo, "low")
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.lowEndImage = myReader.result;
+                var str = _this.lowEndImage.split('base64,');
+                _this.couverinfo.LowPic = str[1];
+            };
+            myReader.readAsDataURL(file);
         });
+        /* this.couverinfo.Lat=result[0];
+         this.couverinfo.Lon=result[1];
+         this.couverinfo.Phototime=result[2];*/
+        /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+        this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+        this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     };
     CulvertPage.prototype.readThisHigh = function (inputValue) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var file, result, myReader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = inputValue.files[0];
-                        return [4 /*yield*/, this.getExifData(file, this.couverinfo, "high")
-                            /* this.couverinfo.Lat=result[0];
-                             this.couverinfo.Lon=result[1];
-                             this.couverinfo.Phototime=result[2];*/
-                            /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-                            this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-                            this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-                        ];
-                    case 1:
-                        result = _a.sent();
-                        myReader = new FileReader();
-                        myReader.onloadend = function (e) {
-                            _this.highEndImage = myReader.result;
-                            var str = _this.highEndImage.split('base64,');
-                            _this.couverinfo.HighPic = str[1];
-                        };
-                        myReader.readAsDataURL(file);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        var file = inputValue.files[0];
+        this.getExifData(file, this.couverinfo, "high")
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.highEndImage = myReader.result;
+                var str = _this.highEndImage.split('base64,');
+                _this.couverinfo.HighPic = str[1];
+            };
+            myReader.readAsDataURL(file);
         });
+        /* this.couverinfo.Lat=result[0];
+         this.couverinfo.Lon=result[1];
+         this.couverinfo.Phototime=result[2];*/
+        /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+        this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+        this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     };
     CulvertPage.prototype.changeListener = function ($event, side) {
         if (side == "low") {
@@ -296,7 +241,7 @@ var CulvertPage = /** @class */ (function () {
     };
     CulvertPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-culvert',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Culvert</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!lowEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'low\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Low End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="lowEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="lowEndImage" *ngIf="lowEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.LowLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelLow()" clear>Reselect Low-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.LowLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end Latitude: {{couverinfo.LowLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.LowLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end longitude: {{couverinfo.LowLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n    <br><br>\n\n    <div *ngIf="!highEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'high\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;High End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="highEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="highEndImage" *ngIf="highEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.HighLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelHigh()" clear>Reselect High-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.HighLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end Latitude: {{couverinfo.HighLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.HighLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end longitude: {{couverinfo.HighLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n    <div *ngIf="highEndImage && lowEndImage">\n\n        <div *ngIf="couverinfo.LowLat&&couverinfo.HighLat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        </div>\n\n\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/,
+            selector: 'page-culvert',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Culvert</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!lowEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'low\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Low End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="lowEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="lowEndImage" *ngIf="lowEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.LowLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelLow()" clear>Reselect Low-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.LowLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end Latitude: {{couverinfo.LowLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.LowLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Low end longitude: {{couverinfo.LowLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n    <br><br>\n\n    <div *ngIf="!highEndImage">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event,\'high\')">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;High End of Culvert</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="highEndImage">\n\n        <div>\n\n            <br><img class="image-client" [src]="highEndImage" *ngIf="highEndImage" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <div *ngIf="!couverinfo.HighLat">\n\n                <ion-card>\n\n                    <ion-item>\n\n                        <label>This photo does not have location information, it cannot be uploaded</label>\n\n                    </ion-item>\n\n                </ion-card>\n\n                <button ion-button (click)="cancelHigh()" clear>Reselect High-end Picture</button>\n\n            </div>\n\n            <ion-card *ngIf="couverinfo.HighLat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end Latitude: {{couverinfo.HighLat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.HighLon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; High end longitude: {{couverinfo.HighLon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n    <div *ngIf="highEndImage && lowEndImage">\n\n        <div *ngIf="couverinfo.LowLat&&couverinfo.HighLat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        </div>\n\n\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>\n\n<ion-footer>\n\n    <div style="text-align: center;font-size: 100%">\n\n        <p>*Please turn on your location settings before using this app or upload the images having location tags from gallery.</p>\n\n    </div>\n\n</ion-footer>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\culvert\culvert.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -331,41 +276,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
@@ -393,30 +303,38 @@ var BasicPage = /** @class */ (function () {
         console.log('ionViewDidLoad CulvertPage');
     };
     BasicPage.prototype.readThis = function (inputValue) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var file, result, myReader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = inputValue.files[0];
-                        return [4 /*yield*/, this.getExifData(file, this.basicinfo)];
-                    case 1:
-                        result = _a.sent();
-                        myReader = new FileReader();
-                        myReader.onloadend = function (e) {
-                            _this.Image = myReader.result;
-                            var str = _this.Image.split('base64,');
-                            _this.basicinfo.Pic = str[1];
-                        };
-                        myReader.readAsDataURL(file);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        var file = inputValue.files[0];
+        this.getExifData(file, this.basicinfo)
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.Image = myReader.result;
+                var str = _this.Image.split('base64,');
+                _this.basicinfo.Pic = str[1];
+            };
+            myReader.readAsDataURL(file);
         });
+        /* this.couverinfo.Lat=result[0];
+         this.couverinfo.Lon=result[1];
+         this.couverinfo.Phototime=result[2];*/
+        /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+        this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+        this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     };
     BasicPage.prototype.changeListener = function ($event) {
-        this.readThis($event.target);
+        var _this = this;
+        var file = $event.target.files[0];
+        this.getExifData(file, this.basicinfo)
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.Image = myReader.result;
+                var str = _this.Image.split('base64,');
+                _this.basicinfo.Pic = str[1];
+            };
+            myReader.readAsDataURL(file);
+        });
     };
     BasicPage.prototype.getExifData = function (file, basic) {
         return new Promise(function (resolve) {
@@ -540,7 +458,7 @@ var BasicPage = /** @class */ (function () {
     };
     BasicPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-basic',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Basic Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="basicinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{basicinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{basicinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{basicinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{basicinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n\n\n        <div *ngIf="basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{basicinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="basicinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/,
+            selector: 'page-basic',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Basic Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="basicinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{basicinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{basicinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{basicinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="basicinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{basicinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n\n\n        <div *ngIf="basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{basicinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="basicinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!basicinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n\n\n</ion-content>\n\n<ion-footer>\n\n    <div style="text-align: center;font-size: 100%">\n\n        <p>*Please turn on your location settings before using this app or upload the images having location tags from gallery.</p>\n\n    </div>\n\n</ion-footer>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\basic\basic.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -575,41 +493,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
@@ -637,34 +520,24 @@ var DebrisJamsPage = /** @class */ (function () {
         console.log('ionViewDidLoad CulvertPage');
     };
     DebrisJamsPage.prototype.readThis = function (inputValue) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var file, result, myReader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = inputValue.files[0];
-                        return [4 /*yield*/, this.getExifData(file, this.djinfo)
-                            /* this.couverinfo.Lat=result[0];
-                             this.couverinfo.Lon=result[1];
-                             this.couverinfo.Phototime=result[2];*/
-                            /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-                            this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-                            this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-                        ];
-                    case 1:
-                        result = _a.sent();
-                        myReader = new FileReader();
-                        myReader.onloadend = function (e) {
-                            _this.Image = myReader.result;
-                            var str = _this.Image.split('base64,');
-                            _this.djinfo.Pic = str[1];
-                        };
-                        myReader.readAsDataURL(file);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        var file = inputValue.files[0];
+        this.getExifData(file, this.djinfo)
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.Image = myReader.result;
+                var str = _this.Image.split('base64,');
+                _this.djinfo.Pic = str[1];
+            };
+            myReader.readAsDataURL(file);
         });
+        /* this.couverinfo.Lat=result[0];
+         this.couverinfo.Lon=result[1];
+         this.couverinfo.Phototime=result[2];*/
+        /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+        this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+        this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     };
     DebrisJamsPage.prototype.changeListener = function ($event) {
         this.readThis($event.target);
@@ -792,7 +665,7 @@ var DebrisJamsPage = /** @class */ (function () {
     };
     DebrisJamsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-debris-jams',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Debris Jams Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <ion-card *ngIf="djinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{djinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{djinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{djinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{djinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n        <div *ngIf="djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{djinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="djinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Direction:</ion-label>\n\n                    <ion-select [(ngModel)]="djinfo.Direction" placeholder="Chose a Direction">\n\n                        <ion-option value="North">North</ion-option>\n\n                        <ion-option value="NorthEast">NorthEast</ion-option>\n\n                        <ion-option value="East">East</ion-option>\n\n                        <ion-option value="SouthEast">SouthEast</ion-option>\n\n                        <ion-option value="South">South</ion-option>\n\n                        <ion-option value="SouthWest">SouthWest</ion-option>\n\n                        <ion-option value="West">West</ion-option>\n\n                        <ion-option value="NorthWest">NorthWest</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/,
+            selector: 'page-debris-jams',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Debris Jams Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n        <ion-label id="fileChoose" color="primary">\n\n          <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n         <ion-icon name="albums"></ion-icon>\n\n          <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n        </ion-label>\n\n      </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <ion-card *ngIf="djinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{djinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{djinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{djinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="djinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{djinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n\n\n        <div *ngIf="djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{djinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="djinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Direction:</ion-label>\n\n                    <ion-select [(ngModel)]="djinfo.Direction" placeholder="Chose a Direction">\n\n                        <ion-option value="North">North</ion-option>\n\n                        <ion-option value="NorthEast">NorthEast</ion-option>\n\n                        <ion-option value="East">East</ion-option>\n\n                        <ion-option value="SouthEast">SouthEast</ion-option>\n\n                        <ion-option value="South">South</ion-option>\n\n                        <ion-option value="SouthWest">SouthWest</ion-option>\n\n                        <ion-option value="West">West</ion-option>\n\n                        <ion-option value="NorthWest">NorthWest</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!djinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>\n\n<ion-footer>\n\n    <div style="text-align: center;font-size: 100%">\n\n        <p>*Please turn on your location settings before using this app or upload the images having location tags from gallery.</p>\n\n    </div>\n\n</ion-footer>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\debris-jams\debris-jams.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -852,20 +725,46 @@ var SignupPage = /** @class */ (function () {
         var _this = this;
         if (this.User.username != "" && this.User.pwd != "") {
             if (this.User.pwd == this.ConfirmPWD) {
-                this.service.signup(this.User.username, this.User.pwd)
-                    .subscribe(function (data) {
-                    console.log(data);
-                    if (data == _this.User.username) {
-                        localStorage.setItem('CurrentUser', _this.User.username);
-                        _this.navCtrl.setRoot(_this.home);
-                        _this.navCtrl.popToRoot;
-                    }
-                    else if (data == "existed") {
-                        alert("username has already existed");
-                    }
-                }, function (err) {
-                    console.log(err.error);
-                });
+                if (!this.User.username.includes("/")
+                    && !this.User.pwd.includes("/")
+                    && !this.User.username.includes(" ")
+                    && !this.User.pwd.includes(" ")
+                    && !this.User.username.includes("$")
+                    && !this.User.pwd.includes("$")
+                    && !this.User.username.includes('\\')
+                    && !this.User.pwd.includes('\\')
+                    && !this.User.username.includes("#")
+                    && !this.User.pwd.includes("#")
+                    && !this.User.username.includes("-")
+                    && !this.User.pwd.includes("-")
+                    && !this.User.username.includes("&")
+                    && !this.User.pwd.includes("&")
+                    && !this.User.username.includes("+")
+                    && !this.User.pwd.includes("+")
+                    && !this.User.username.includes("_")
+                    && !this.User.pwd.includes("_")
+                    && !this.User.username.includes("(")
+                    && !this.User.pwd.includes("(")
+                    && !this.User.username.includes(")")
+                    && !this.User.pwd.includes(")")) {
+                    this.service.signup(this.User.username, this.User.pwd)
+                        .subscribe(function (data) {
+                        console.log(data);
+                        if (data == _this.User.username) {
+                            localStorage.setItem('CurrentUser', _this.User.username);
+                            _this.navCtrl.setRoot(_this.home);
+                            _this.navCtrl.popToRoot;
+                        }
+                        else if (data == "existed") {
+                            alert("username has already existed");
+                        }
+                    }, function (err) {
+                        console.log(err.error);
+                    });
+                }
+                else {
+                    alert("Username and password should not contain slash, space, $, \\, #, +, -, (, )");
+                }
             }
             else {
                 alert("Password and Confirm Password are not matched, Please check again.");
@@ -921,41 +820,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
@@ -983,34 +847,24 @@ var StreamflowPage = /** @class */ (function () {
         console.log('ionViewDidLoad CulvertPage');
     };
     StreamflowPage.prototype.readThis = function (inputValue) {
-        return __awaiter(this, void 0, void 0, function () {
-            var _this = this;
-            var file, result, myReader;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        file = inputValue.files[0];
-                        return [4 /*yield*/, this.getExifData(file, this.sfinfo)
-                            /* this.couverinfo.Lat=result[0];
-                             this.couverinfo.Lon=result[1];
-                             this.couverinfo.Phototime=result[2];*/
-                            /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-                            this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-                            this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-                        ];
-                    case 1:
-                        result = _a.sent();
-                        myReader = new FileReader();
-                        myReader.onloadend = function (e) {
-                            _this.Image = myReader.result;
-                            var str = _this.Image.split('base64,');
-                            _this.sfinfo.Pic = str[1];
-                        };
-                        myReader.readAsDataURL(file);
-                        return [2 /*return*/];
-                }
-            });
+        var _this = this;
+        var file = inputValue.files[0];
+        this.getExifData(file, this.sfinfo)
+            .then(function (res) {
+            var myReader = new FileReader();
+            myReader.onloadend = function (e) {
+                _this.Image = myReader.result;
+                var str = _this.Image.split('base64,');
+                _this.sfinfo.Pic = str[1];
+            };
+            myReader.readAsDataURL(file);
         });
+        /* this.couverinfo.Lat=result[0];
+         this.couverinfo.Lon=result[1];
+         this.couverinfo.Phototime=result[2];*/
+        /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+        this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+        this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
     };
     StreamflowPage.prototype.changeListener = function ($event) {
         this.readThis($event.target);
@@ -1142,7 +996,7 @@ var StreamflowPage = /** @class */ (function () {
     };
     StreamflowPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-streamflow',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Streamflow Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="sfinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{sfinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{sfinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{sfinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{sfinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n        <div *ngIf="sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{sfinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="sfinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Agricultural/Urban:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Area" placeholder="agricultural">\n\n                        <ion-option value="agricultural">agricultural</ion-option>\n\n                        <ion-option value="urban">urban</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>flow Level:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Level" placeholder="Chose a level">\n\n                        <ion-option value="low">low</ion-option>\n\n                        <ion-option value="medium">medium</ion-option>\n\n                        <ion-option value="high">high</ion-option>\n\n                        <ion-option value="extreme">extreme</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/,
+            selector: 'page-streamflow',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/'<!--\n\n  Generated template for the CulvertPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n    <ion-navbar color="primary">\n\n        <ion-title>Upload Streamflow Image</ion-title>\n\n    </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n    <div *ngIf="!Image">\n\n        <div id="upload_button">\n\n            <label>\n\n      <ion-label id="fileChoose" color="primary">\n\n        <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n       <ion-icon name="albums"></ion-icon>\n\n        <span class="btn btn-primary">&nbsp;Explore Image</span>\n\n      </ion-label>\n\n    </label>\n\n        </div>\n\n    </div>\n\n\n\n    <div *ngIf="Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="Image" *ngIf="Image" height="200" width="200" />\n\n        </div>\n\n        <ion-list>\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <ion-card *ngIf="sfinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{sfinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{sfinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{sfinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="sfinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{sfinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <!--<ion-card>\n\n              <ion-item>\n\n                  <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n              </ion-item>\n\n          </ion-card>-->\n\n            <!--<ion-item *ngIf="!couverinfo.Phototime">\n\n              <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n              <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n          </ion-item>-->\n\n        </ion-list>\n\n\n\n        <!--<button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n      <button ion-button (click)="cancelUpload()" clear>Cancel</button>-->\n\n    </div>\n\n\n\n\n\n\n\n\n\n    <div *ngIf="Image">\n\n        <div *ngIf="sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{sfinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="sfinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>Agricultural/Urban:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Area" placeholder="agricultural">\n\n                        <ion-option value="agricultural">agricultural</ion-option>\n\n                        <ion-option value="urban">urban</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label>flow Level:</ion-label>\n\n                    <ion-select [(ngModel)]="sfinfo.Level" placeholder="Chose a level">\n\n                        <ion-option value="low">low</ion-option>\n\n                        <ion-option value="medium">medium</ion-option>\n\n                        <ion-option value="high">high</ion-option>\n\n                        <ion-option value="extreme">extreme</ion-option>\n\n                    </ion-select>\n\n                </ion-item>\n\n            </ion-card>\n\n            <button ion-button (click)="upload()" clear>Upload Information</button>\n\n        </div>\n\n        <div *ngIf="!sfinfo.Lat">\n\n            <ion-card>\n\n                <ion-item>\n\n                    <label>This photo does not have location information, it cannot be uploaded</label>\n\n                </ion-item>\n\n            </ion-card>\n\n        </div>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>\n\n\n\n</ion-content>\n\n<ion-footer>\n\n    <div style="text-align: center;font-size: 100%">\n\n        <p>*Please turn on your location settings before using this app or upload the images having location tags from gallery.</p>\n\n    </div>\n\n</ion-footer>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\streamflow\streamflow.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */],
@@ -2489,27 +2343,53 @@ var LoginPage = /** @class */ (function () {
         var _this = this;
         console.log("click");
         if (this.User.username != "" && this.User.pwd != "") {
-            this.service.login(this.User.username, this.User.pwd)
-                .subscribe(function (data) {
-                console.log(data);
-                if (data == "matched") {
-                    localStorage.setItem('CurrentUser', _this.User.username);
-                    _this.getLocation();
-                    _this.navCtrl.setRoot(_this.home);
-                    _this.navCtrl.popToRoot;
-                }
-                else if (data == "not matched") {
-                    alert("Password not matched");
-                }
-                else if (data == "not existed") {
-                    alert("no such a user");
-                }
-                else {
-                    alert("connection error");
-                }
-            }, function (err) {
-                console.log(err.error);
-            });
+            if (!this.User.username.includes("/")
+                && !this.User.pwd.includes("/")
+                && !this.User.username.includes(" ")
+                && !this.User.pwd.includes(" ")
+                && !this.User.username.includes("$")
+                && !this.User.pwd.includes("$")
+                && !this.User.username.includes('\\')
+                && !this.User.pwd.includes('\\')
+                && !this.User.username.includes("#")
+                && !this.User.pwd.includes("#")
+                && !this.User.username.includes("-")
+                && !this.User.pwd.includes("-")
+                && !this.User.username.includes("&")
+                && !this.User.pwd.includes("&")
+                && !this.User.username.includes("+")
+                && !this.User.pwd.includes("+")
+                && !this.User.username.includes("_")
+                && !this.User.pwd.includes("_")
+                && !this.User.username.includes("(")
+                && !this.User.pwd.includes("(")
+                && !this.User.username.includes(")")
+                && !this.User.pwd.includes(")")) {
+                this.service.login(this.User.username, this.User.pwd)
+                    .subscribe(function (data) {
+                    console.log(data);
+                    if (data == "matched") {
+                        localStorage.setItem('CurrentUser', _this.User.username);
+                        _this.getLocation();
+                        _this.navCtrl.setRoot(_this.home);
+                        _this.navCtrl.popToRoot;
+                    }
+                    else if (data == "not matched") {
+                        alert("Password not matched");
+                    }
+                    else if (data == "not existed") {
+                        alert("no such a user");
+                    }
+                    else {
+                        alert("connection error");
+                    }
+                }, function (err) {
+                    alert(err.error);
+                });
+            }
+            else {
+                alert("Username and password should not contain slash, space, $, \\, #, +, -, (, )");
+            }
         }
     };
     LoginPage.prototype.gotoSignup = function () {
@@ -2934,7 +2814,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n            Welcome {{currentUser}}\n\n            <button ion-button clear small (click)="logout()" style="float: right;" color="light">logout</button>\n\n\n\n        </ion-title>\n\n\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n    <button id="map" ion-button full  (click)="gotomap()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;        Map     </button><br><br>\n\n        <button id="basic" ion-button full (click)="gotoBasic()" round ><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Basic Image</button><br><br>\n\n        <button id="culvert" ion-button full (click)="gotoCulvert()" round ><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Culvert</button><br><br>\n\n        <button id="sf" ion-button full  (click)="gotoSf()" round ><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Streamflow</button><br><br>\n\n        <button id="dj" ion-button full  (click)="gotoDebris()" round ><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Debris Jams</button><br><br>\n\n    <!-- <button id="picbutton" ion-button round (click)="takePicture()" clear><ion-icon name="camera"  large>\n\n        </ion-icon>&nbsp; Upload by camera</button><br><br>-->\n\n    <!--<div id="upload_button">\n\n            <label>\n\n            <ion-label id="fileChoose" color="primary">\n\n              <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n             <ion-icon name="albums"></ion-icon>\n\n              <span class="btn btn-primary">&nbsp;UPLOAD FROM STORAGE</span>\n\n            </ion-label>\n\n          </label>\n\n        </div>-->\n\n\n\n    <!--<div *ngIf="base64Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="base64Image" *ngIf="base64Image" />\n\n        </div>\n\n        <ion-list>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{couverinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{couverinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>\n\n        </ion-list>\n\n\n\n        <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>-->\n\n\n\n</ion-content>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\home\home.html"*/'<ion-header>\n\n    <ion-navbar color="primary">\n\n        <ion-title>\n\n            Welcome {{currentUser}}\n\n            <button ion-button clear small (click)="logout()" style="float: right;" color="light">logout</button>\n\n\n\n        </ion-title>\n\n\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n    <button id="map" ion-button full (click)="gotomap()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;        Map     </button><br><br>\n\n    <button id="basic" ion-button full (click)="gotoBasic()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Basic Image</button><br><br>\n\n    <button id="culvert" ion-button full (click)="gotoCulvert()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Culvert</button><br><br>\n\n    <button id="sf" ion-button full (click)="gotoSf()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Streamflow</button><br><br>\n\n    <button id="dj" ion-button full (click)="gotoDebris()" round><ion-icon name="map"  large>\n\n        </ion-icon>&nbsp;  Upload Debris Jams</button><br><br>\n\n    <!-- <button id="picbutton" ion-button round (click)="takePicture()" clear><ion-icon name="camera"  large>\n\n        </ion-icon>&nbsp; Upload by camera</button><br><br>-->\n\n    <!--<div id="upload_button">\n\n            <label>\n\n            <ion-label id="fileChoose" color="primary">\n\n              <input class="ionic-item" type="file" accept="image/*" (change)="changeListener($event)">\n\n             <ion-icon name="albums"></ion-icon>\n\n              <span class="btn btn-primary">&nbsp;UPLOAD FROM STORAGE</span>\n\n            </ion-label>\n\n          </label>\n\n        </div>-->\n\n\n\n    <!--<div *ngIf="base64Image">\n\n        <div>\n\n            <br><img class="image-client" [src]="base64Image" *ngIf="base64Image" />\n\n        </div>\n\n        <ion-list>\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Uploader : {{couverinfo.Uploader}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Lat">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Latitude: {{couverinfo.Lat}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Lon">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; longitude: {{couverinfo.Lon}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Orientation">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Direction: {{couverinfo.Orientation}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-card *ngIf="couverinfo.Phototime">\n\n                <ion-item>\n\n                    <ion-label> &nbsp; Photoed Time : {{couverinfo.Phototime}}</ion-label>\n\n                </ion-item>\n\n            </ion-card>\n\n\n\n            <ion-card>\n\n                <ion-item>\n\n                    <ion-input type="text" [(ngModel)]="couverinfo.Description" placeholder="Add description..." clearOnEdit></ion-input>\n\n                </ion-item>\n\n            </ion-card>\n\n            <ion-item *ngIf="!couverinfo.Phototime">\n\n                <ion-label floating> &nbsp; Click here to select photoed Time</ion-label>\n\n                <ion-datetime displayFormat="YYYY-MM-DD HH:mm" [(ngModel)]="couverinfo.Phototime"></ion-datetime>\n\n            </ion-item>\n\n        </ion-list>\n\n\n\n        <button ion-button (click)="uploadCouvert()" clear>Upload Information</button>\n\n        <button ion-button (click)="cancelUpload()" clear>Cancel</button>\n\n    </div>-->\n\n\n\n</ion-content>\n\n<ion-footer>\n\n    <div style="text-align: center;font-size: 100%">\n\n        <p>*Please turn on your location settings before using this app or upload the images having location tags from gallery.</p>\n\n    </div>\n\n</ion-footer>'/*ion-inline-end:"D:\DWS V1\DWS-DoubleEnd\couvertWeb\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["g" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_7__providers_service_service__["a" /* ServiceProvider */],

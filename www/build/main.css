@@ -25686,6 +25686,12 @@ ion-navbar.toolbar {
   color: black;
 }
 
+.botrelative {
+  position: relative;
+  width: 50%;
+  bottom: 5px;
+}
+
 #upload_button {
   display: inline-block;
   color: blue;
