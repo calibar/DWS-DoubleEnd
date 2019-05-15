@@ -39,25 +39,27 @@ export class StreamflowPage {
     console.log('ionViewDidLoad CulvertPage');
   }
   
-  async readThis(inputValue: any) {
+  readThis(inputValue: any) {
     var file= inputValue.files[0];
-   var result=await this.getExifData(file,this.sfinfo)
-
+   this.getExifData(file,this.sfinfo)
+    .then((res)=>{
+      var myReader:FileReader = new FileReader();
+  
+      myReader.onloadend = (e) => {
+        this.Image = myReader.result;
+      
+        var str=this.Image.split('base64,');
+        this.sfinfo.Pic=str[1];
+      }
+      myReader.readAsDataURL(file);
+    })
  /* this.couverinfo.Lat=result[0];
   this.couverinfo.Lon=result[1];
   this.couverinfo.Phototime=result[2];*/
 /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
 this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
 this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-    var myReader:FileReader = new FileReader();
-  
-    myReader.onloadend = (e) => {
-      this.Image = myReader.result;
-    
-      var str=this.Image.split('base64,');
-      this.sfinfo.Pic=str[1];
-    }
-    myReader.readAsDataURL(file);
+   
   }
 
   changeListener($event) : void {

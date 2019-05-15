@@ -37,17 +37,11 @@ export class CulvertPage {
     console.log('ionViewDidLoad CulvertPage');
   }
   
-  async readThisLow(inputValue: any) {
+  readThisLow(inputValue: any) {
     var file= inputValue.files[0];
-   var result=await this.getExifData(file,this.couverinfo,"low")
-
- /* this.couverinfo.Lat=result[0];
-  this.couverinfo.Lon=result[1];
-  this.couverinfo.Phototime=result[2];*/
-/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-    var myReader:FileReader = new FileReader();
+   this.getExifData(file,this.couverinfo,"low")
+    .then((res)=>{
+      var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
       this.lowEndImage = myReader.result;
@@ -56,17 +50,19 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
       this.couverinfo.LowPic=str[1];
     }
     myReader.readAsDataURL(file);
-  }
-  async readThisHigh(inputValue: any) {
-    var file= inputValue.files[0];
-   var result=await this.getExifData(file,this.couverinfo,"high")
-
+    })
  /* this.couverinfo.Lat=result[0];
   this.couverinfo.Lon=result[1];
   this.couverinfo.Phototime=result[2];*/
 /* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
 this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
 this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
+    
+  }
+  readThisHigh(inputValue: any) {
+    var file= inputValue.files[0];
+   this.getExifData(file,this.couverinfo,"high")
+   .then((res)=>{
     var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
@@ -76,6 +72,15 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
       this.couverinfo.HighPic=str[1];
     }
     myReader.readAsDataURL(file);
+   })
+
+ /* this.couverinfo.Lat=result[0];
+  this.couverinfo.Lon=result[1];
+  this.couverinfo.Phototime=result[2];*/
+/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
+    
   }
   changeListener($event,side:string) : void {
     if(side=="low"){this.readThisLow($event.target);}else if(side=="high"){

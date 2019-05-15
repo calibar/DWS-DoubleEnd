@@ -32,7 +32,29 @@ export class SignupPage {
   signup(){
     if(this.User.username!=""&&this.User.pwd!=""){
       if(this.User.pwd==this.ConfirmPWD){
-        this.service.signup(this.User.username,this.User.pwd)
+        if(!this.User.username.includes("/")
+        &&!this.User.pwd.includes("/")
+        &&!this.User.username.includes(" ")
+        &&!this.User.pwd.includes(" ")
+        &&!this.User.username.includes("$")
+        &&!this.User.pwd.includes("$")
+        &&!this.User.username.includes('\\')
+        &&!this.User.pwd.includes('\\')
+        &&!this.User.username.includes("#")
+        &&!this.User.pwd.includes("#")
+        &&!this.User.username.includes("-")
+        &&!this.User.pwd.includes("-")
+        &&!this.User.username.includes("&")
+        &&!this.User.pwd.includes("&")
+        &&!this.User.username.includes("+")
+        &&!this.User.pwd.includes("+")
+        &&!this.User.username.includes("_")
+        &&!this.User.pwd.includes("_")
+        &&!this.User.username.includes("(")
+        &&!this.User.pwd.includes("(")
+        &&!this.User.username.includes(")")
+        &&!this.User.pwd.includes(")")){
+          this.service.signup(this.User.username,this.User.pwd)
         .subscribe(data=>{
           console.log(data)
           if(data==this.User.username){
@@ -45,6 +67,10 @@ export class SignupPage {
         },err=>{
           console.log(err.error)
         })
+        }else{
+          alert("Username and password should not contain slash, space, $, \\, #, +, -, (, )")
+        }
+        
       }else{
         alert("Password and Confirm Password are not matched, Please check again.")
       }

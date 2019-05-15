@@ -39,17 +39,11 @@ export class DebrisJamsPage {
     console.log('ionViewDidLoad CulvertPage');
   }
   
-  async readThis(inputValue: any) {
+  readThis(inputValue: any) {
     var file= inputValue.files[0];
-   var result=await this.getExifData(file,this.djinfo)
-
- /* this.couverinfo.Lat=result[0];
-  this.couverinfo.Lon=result[1];
-  this.couverinfo.Phototime=result[2];*/
-/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
-this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
-this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
-    var myReader:FileReader = new FileReader();
+   this.getExifData(file,this.djinfo)
+    .then((res)=>{
+      var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
       this.Image = myReader.result;
@@ -58,6 +52,14 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
       this.djinfo.Pic=str[1];
     }
     myReader.readAsDataURL(file);
+    })
+ /* this.couverinfo.Lat=result[0];
+  this.couverinfo.Lon=result[1];
+  this.couverinfo.Phototime=result[2];*/
+/* this.couverinfo.Lat=Number(localStorage.getItem('exifLat'));
+this.couverinfo.Lon=Number(localStorage.getItem('exifLon'));
+this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
+    
   }
 
   changeListener($event) : void {

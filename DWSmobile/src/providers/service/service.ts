@@ -121,4 +121,7 @@ export class ServiceProvider {
    let seq=this.http.post(this.url+'debris_jams',params,{ headers: {'Content-Type':'application/x-www-form-urlencoded'},responseType:'text'})
    return seq;
   }
+  getImage(url:any){
+    let seq=this.http.get(url,{})
+  }
 }

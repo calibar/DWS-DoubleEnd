@@ -76,7 +76,29 @@ export class LoginPage {
   login(){
     console.log("click");
     if(this.User.username!=""&&this.User.pwd!=""){
-      this.service.login(this.User.username,this.User.pwd)
+      if(!this.User.username.includes("/")
+      &&!this.User.pwd.includes("/")
+      &&!this.User.username.includes(" ")
+      &&!this.User.pwd.includes(" ")
+      &&!this.User.username.includes("$")
+      &&!this.User.pwd.includes("$")
+      &&!this.User.username.includes('\\')
+      &&!this.User.pwd.includes('\\')
+      &&!this.User.username.includes("#")
+      &&!this.User.pwd.includes("#")
+      &&!this.User.username.includes("-")
+      &&!this.User.pwd.includes("-")
+      &&!this.User.username.includes("&")
+      &&!this.User.pwd.includes("&")
+      &&!this.User.username.includes("+")
+      &&!this.User.pwd.includes("+")
+      &&!this.User.username.includes("_")
+      &&!this.User.pwd.includes("_")
+      &&!this.User.username.includes("(")
+      &&!this.User.pwd.includes("(")
+      &&!this.User.username.includes(")")
+      &&!this.User.pwd.includes(")")){
+         this.service.login(this.User.username,this.User.pwd)
       .subscribe(data=>{
         console.log(data)
         if(data=="matched"){
@@ -92,8 +114,12 @@ export class LoginPage {
         alert("connection error")
       }
       },err=>{
-        console.log(err.error)
+        alert(err.error)
       })
+      }else{
+          alert("Username and password should not contain slash, space, $, \\, #, +, -, (, )")
+      }
+     
     }
   }
   gotoSignup(){

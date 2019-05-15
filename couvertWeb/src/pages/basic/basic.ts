@@ -38,11 +38,11 @@ export class BasicPage {
     console.log('ionViewDidLoad CulvertPage');
   }
   
-  async readThis(inputValue: any) {
+  readThis(inputValue: any) {
     var file= inputValue.files[0];
-   var result=await this.getExifData(file,this.basicinfo)
-    
-      var myReader:FileReader = new FileReader();
+  this.getExifData(file,this.basicinfo)
+  .then((res)=>{
+    var myReader:FileReader = new FileReader();
   
     myReader.onloadend = (e) => {
       this.Image = myReader.result;
@@ -51,6 +51,9 @@ export class BasicPage {
       this.basicinfo.Pic=str[1];
     }
     myReader.readAsDataURL(file);
+  })
+    
+     
  /* this.couverinfo.Lat=result[0];
   this.couverinfo.Lon=result[1];
   this.couverinfo.Phototime=result[2];*/
@@ -61,7 +64,19 @@ this.couverinfo.Phototime=localStorage.getItem('PhotoedTime')*/
   }
 
   changeListener($event) : void {
-    this.readThis($event.target)
+    var file= $event.target.files[0];
+    this.getExifData(file,this.basicinfo)
+    .then((res)=>{
+      var myReader:FileReader = new FileReader();
+    
+      myReader.onloadend = (e) => {
+        this.Image = myReader.result;
+      
+        var str=this.Image.split('base64,');
+        this.basicinfo.Pic=str[1];
+      }
+      myReader.readAsDataURL(file);
+    })
 
   }
  
